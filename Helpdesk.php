@@ -188,8 +188,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ticket_number = 'HD' . uniqid();
 
     // Insert form data into the database table
-    $insert_stmt = $conn->prepare("INSERT INTO help_desk_forms (name, email, purpose, other_purpose, schedule, message, valid_id, ticket_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $insert_stmt->bind_param("ssssssss", $name, $user_email, $purpose, $otherPurpose, $schedule, $message, $valid_id_filename, $ticket_number);
+   $admin_reply = 'Pending'; // Set default value
+$insert_stmt = $conn->prepare("INSERT INTO help_desk_forms (name, email, purpose, other_purpose, schedule, message, valid_id, ticket_number, admin_reply) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$insert_stmt->bind_param("sssssssss", $name, $user_email, $purpose, $otherPurpose, $schedule, $message, $valid_id_filename, $ticket_number, $admin_reply);
 
     if ($insert_stmt->execute()) {
         // Form data inserted successfully
