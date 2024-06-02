@@ -5,6 +5,10 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
+
+if (!isset($_SESSION['email'])) {
+    header("Location: Signup.php");
+}
 function handlePhpError($errno, $errstr, $errfile, $errline) {
     echo "<script type='text/javascript'>
             alert('Error: $errstr in $errfile on line $errline');
@@ -18,10 +22,6 @@ $error_log_file = __DIR__ . '/error_log.txt';
 function log_error($message) {
     global $error_log_file;
     error_log($message . "\n", 3, $error_log_file);
-}
-if (!isset($_SESSION['email'])) {
-    header("Location: Signup.php");
-    exit();
 }
 if (isset($_POST['digit1']) && isset($_POST['digit2']) && isset($_POST['digit3']) && isset($_POST['digit4']) && isset($_POST['digit5']) && isset($_POST['digit6'])) {
     $enteredOTP = $_POST['digit1'] . $_POST['digit2'] . $_POST['digit3'] . $_POST['digit4'] . $_POST['digit5'] . $_POST['digit6'];
