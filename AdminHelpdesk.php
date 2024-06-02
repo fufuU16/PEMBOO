@@ -4,11 +4,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-  if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
-                     // Redirect the user to the login page or show an error message
-                     header("Location: AdminLogin.php"); // Change "login.php" to your login page
-                     exit();
-                 }
+if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
+    header("Location: AdminLogin.php");
+    exit();
+}
+
 function handlePhpError($errno, $errstr, $errfile, $errline) {
     echo "<script type='text/javascript'>
             alert('Error: $errstr in $errfile on line $errline');
@@ -33,7 +33,7 @@ function log_error($message) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List of Helpdesk Form</title>
-    <link rel="icon" type="image/png" href="picture\icon.png">
+    <link rel="icon" type="image/png" href="picture/icon.png">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <style>
@@ -44,7 +44,7 @@ function log_error($message) {
             background-color: #ffffff;
         }
         .truncate {
-            max-width: 150px; /* Adjust the width as needed */
+            max-width: 150px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -60,16 +60,13 @@ function log_error($message) {
 <body>
     <div class="container my-5">
         <h2>List of User's Helpdesk</h2>
-     
         <a class="btn btn-primary" href="AdminLogout.php">Logout</a>
         <br>
         
-        <!-- Search Bar -->
         <div class="mb-3">
             <input type="text" id="searchInput" class="form-control" placeholder="Search...">
         </div>
 
-        <!-- Sorting Dropdown -->
         <div class="mb-3">
             <select id="sortSelect" class="form-select">
                 <option value="id">Sort by ID</option>
@@ -100,22 +97,17 @@ function log_error($message) {
             </thead>
             <tbody id="helpdeskTableBody">
                 <?php
-
-                 // Check if the user is not logged in
-               
-                
                  $servername = "pembodatabase.mysql.database.azure.com";
                  $username = "pemboweb";
                  $password = 'Pa$$wordDINS';
                  $dbname = "pembodb";
                  
-                // Create connection
-                $connection = new mysqli($servername, $username, $password, $database);
+                $connection = new mysqli($servername, $username, $password, $dbname);
 
-                // Check connection
                 if ($connection->connect_error) {
                     die("Connection failed: " . $connection->connect_error);
                 }
+
                 $email = $_SESSION['email'];
                 $role_query = $connection->prepare("SELECT roles FROM admins WHERE email = ?");
                 $role_query->bind_param("s", $email);
@@ -126,7 +118,6 @@ function log_error($message) {
                     $admin = $role_result->fetch_assoc();
                     $roles = explode(',', $admin['roles']);
 
-                    // Show buttons based on the roles
                     if (in_array('Super Admin', $roles)) {
                         echo '<a class="btn btn-primary" href="AdminUser.php">Users</a> ';
                         echo '<a class="btn btn-primary" href="AdminHelpdesk.php">Help Desk</a> ';
@@ -137,11 +128,10 @@ function log_error($message) {
                         echo '<a class="btn btn-primary" href="AdminHelpdesk.php">Help Desk</a>';
                     }
                 } else {
-                    // Handle error if role retrieval fails
                     echo "Error: Unable to retrieve role information.";
                 }
                 
-                $sql = "SELECT * FROM help_desk_forms"; // Query to select all data from help_desk_forms table
+                $sql = "SELECT * FROM help_desk_forms";
                 $result = $connection->query($sql);
 
                 if (!$result) {
@@ -149,7 +139,6 @@ function log_error($message) {
                 }
 
                 while ($row = $result->fetch_assoc()) {
-                    // Check if admin_reply is empty and set the appropriate class
                     $rowClass = empty($row['admin_reply']) ? 'no-reply' : 'has-reply';
 
                     echo "
@@ -179,7 +168,6 @@ function log_error($message) {
     </div>
 
     <script>
-        // Search Functionality
         document.getElementById('searchInput').addEventListener('keyup', function() {
             const filter = this.value.toLowerCase();
             const rows = document.querySelectorAll('#helpdeskTableBody tr');
@@ -200,7 +188,6 @@ function log_error($message) {
             });
         });
 
-        // Sort Functionality
         document.getElementById('sortSelect').addEventListener('change', function() {
             const rowsArray = Array.from(document.querySelectorAll('#helpdeskTableBody tr'));
             const sortBy = this.value;
