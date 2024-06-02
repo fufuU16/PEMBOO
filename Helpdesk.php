@@ -174,7 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $valid_id_filename = uniqid() . '_' . $valid_id_name;
         
         // Move the file to the specified directory
-        $valid_id_path = 'C:/xampp/htdocs/PEMBO/ValidID/' . $valid_id_filename;
+        $valid_id_path = 'ValidID/' . $valid_id_filename;
         if (!move_uploaded_file($valid_id_tmp, $valid_id_path)) {
             echo '<script>alert("Failed to move the uploaded file.");</script>';
             exit();
