@@ -177,7 +177,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['email'] = $email;
             // User registration successful, redirect to otp.php
             header('Location: otp.php?email=' . urlencode($email));
-            exit();
         } else {
             echo '<script>alert("Error: ' . $insert_user_stmt->error . '");</script>';
         }
