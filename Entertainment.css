@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.top-image {
+    position: relative; /* Change to relative */
+}
+
+.top-image img {
+    width: 100%;
+    display: block;
+}
+
+/* Style the container */
+.container {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-top: 20px; /* Adjust margin-top as needed */
+    box-sizing: border-box;
+}
+.navbar {
+    text-align: center; /* Center align the content */
+    margin: 0 auto; /* Center horizontally */
+}
+
+.navbar a {
+    margin: 0 20px;
+    display: inline-block; /* Display anchor elements inline */
+    padding: 10px 20px; /* Add padding for better readability */
+    text-decoration: none; /* Remove default underline */
+    color: #333; /* Set link color */
+    font-family: 'Open Sans', sans-serif; /* Set font family */
+    font-weight: 600; /* Set font weight to semi-bold */
+    font-size: 24px;
+}
+.navbar a.home{
+    text-decoration: underline ;
+    text-decoration-color: #333; /* Set underline color to yellow */
+    padding-bottom: 5px; 
+}
+.navbar a.login{
+    float: right;
+}
+.navbar a:hover {
+    background-color: #ddd; /* Change background color on hover */
+}
+.title{
+    font-family: 'Lato', sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+.titlee {
+    text-align: center; /* Center align the title */
+}
+
+.titlee span {
+    font-family: 'Lato', sans-serif; /* Set font family */
+    font-weight:bold; /* Set font weight to semi-bold */
+    font-size: 70px; /* Set font size */
+}
+
+/* Style each part of the title */
+.part1 {
+    color: #1A4798; /* Set color for the first part */
+}
+
+.part2 {
+    color: #ED1C24; /* Set color for the second part */
+}
+.event-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the events horizontally */
+    align-items: center; /* Center the events vertically */
+}
+
+.event {
+    width: 390px;
+    height: 320px;
+    background-color: #1A4798;
+    padding: 20px;
+    margin: 20px; /* Add space between events */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Lato', sans-serif;
+}
+
+
+.event h3 {
+    margin-top: 0;
+    color: #FFD700; /* Update text color */
+}
+
+.event p {
+    margin: 10px 0;
+    color: #fff; /* Update text color */
+}

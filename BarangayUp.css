@@ -1,0 +1,118 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.top-image {
+    position: relative; /* Change to relative */
+}
+
+.top-image img {
+    width: 100%;
+    display: block;
+}
+
+/* Style the container */
+.container {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-top: 20px; /* Adjust margin-top as needed */
+    box-sizing: border-box;
+}
+.navbar {
+    text-align: center; /* Center align the content */
+    margin: 0 auto; /* Center horizontally */
+}
+
+.navbar a {
+    margin: 0 20px;
+    display: inline-block; /* Display anchor elements inline */
+    padding: 10px 20px; /* Add padding for better readability */
+    text-decoration: none; /* Remove default underline */
+    color: #333; /* Set link color */
+    font-family: 'Open Sans', sans-serif; /* Set font family */
+    font-weight: 600; /* Set font weight to semi-bold */
+    font-size: 24px;
+}
+.navbar a.home{
+    text-decoration: underline ;
+    text-decoration-color: #333; /* Set underline color to yellow */
+    padding-bottom: 5px; 
+}
+.navbar a.login{
+    float: right;
+}
+.navbar a:hover {
+    background-color: #ddd; /* Change background color on hover */
+}
+
+.titlee {
+    text-align: center; /* Center align the title */
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.titlee .part1 {
+    color: #1A4798; /* Set color for the first part */
+}
+
+.titlee .part2 {
+    color: #ED1C24; /* Set color for the second part */
+}
+
+.titlee span {
+    font-family: 'Lato', sans-serif; /* Set font family */
+    font-weight:bold; /* Set font weight to semi-bold */
+    font-size: 70px; /* Set font size */
+}
+
+/* Style each part of the title */
+.show {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Align items vertically */
+    width: 1000px; /* Set width of the container */
+    margin: 40px auto 20px; /* Adjust margin as needed */
+    justify-content: center; /* Center horizontally */
+}
+.image1 img {
+    width: 400px; /* Set width of the image */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px;
+}
+
+.description {
+    flex: 1; /* Allow the description to grow to fill remaining space */
+    height: 200px; /* Set a fixed height */
+}
+
+.vision{
+    flex: 1; /* Equal width */
+    /* Add space between sections */
+    text-align: center;
+    text-align-last: justify; /* Align the last line */
+    text-align: justify;
+    font-size: 15px;
+    font-weight: normal;
+    font-family: 'Lato', sans-serif;
+}
+.show .image1 {
+    flex: 0 0 auto; /* Allow the image to shrink */
+    margin-right: 100px;
+}
+.othershow {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Align items vertically */
+    width: 600px; /* Inherit width from .show */
+    margin: 40px auto 20px; /* Adjust margin as needed */
+    justify-content: center; /* Center horizontally */
+}
+
+.othershow .image2 img,
+.othershow .image3 img {
+    width: 200px; /* Set width of the images */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px;
+}
+
+.othershow .image2,
+.othershow .image3 {
+    margin: 0 20px; /* Add space between images */
+}

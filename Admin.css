@@ -1,0 +1,29 @@
+
+.nav-links {
+    position: absolute;
+    top: 10px; /* Adjust the top position to move it to the top */
+    right: 20px; /* Adjust the right position as needed */
+    display: flex;
+}
+
+.nav-links a {
+    color: #387d3d; /* Your desired link color */
+    text-decoration: none;
+    margin: 0 10px; /* Add margin between links as needed */
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.nav-links a:hover::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    width: 10px; /* Adjust the width of the hover effect */
+    height: 10px; /* Adjust the height of the hover effect */
+    background-color: #387d3d; /* Your desired hover color */
+    border-radius: 50%;
+}

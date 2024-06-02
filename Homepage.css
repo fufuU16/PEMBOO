@@ -1,0 +1,125 @@
+/* Style the top image */
+body {
+    margin: 0;
+    padding: 0;
+}
+.top-image {
+    position: relative; /* Change to relative */
+}
+
+.top-image img {
+    width: 100%;
+    display: block;
+}
+
+/* Style the container */
+.container {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-top: 20px; /* Adjust margin-top as needed */
+    box-sizing: border-box;
+}
+.navbar {
+    text-align: center; /* Center align the content */
+    margin: 0 auto; /* Center horizontally */
+}
+
+.navbar a {
+    margin: 0 20px;
+    display: inline-block; /* Display anchor elements inline */
+    padding: 10px 20px; /* Add padding for better readability */
+    text-decoration: none; /* Remove default underline */
+    color: #333; /* Set link color */
+    font-family: 'Open Sans', sans-serif; /* Set font family */
+    font-weight: 600; /* Set font weight to semi-bold */
+    font-size: 24px;
+}
+.navbar a.home{
+    text-decoration: underline ;
+    text-decoration-color: #333; /* Set underline color to yellow */
+    padding-bottom: 5px; 
+}
+.navbar a.login{
+    float: right;
+}
+.navbar a:hover {
+    background-color: #ddd; /* Change background color on hover */
+}
+.title{
+    font-family: 'Lato', sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+.titlee {
+    text-align: center; /* Center align the title */
+}
+
+.titlee span {
+    font-family: 'Lato', sans-serif; /* Set font family */
+    font-weight:bold; /* Set font weight to semi-bold */
+    font-size: 70px; /* Set font size */
+}
+
+/* Style each part of the title */
+.part1 {
+    color: #1A4798; /* Set color for the first part */
+}
+
+.part2 {
+    color: #ED1C24; /* Set color for the second part */
+}
+.missions {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center the content horizontally */
+    max-width: 800px; /* Limit the maximum width of the container */
+    margin: 0 auto;
+
+}
+
+/* Style mission and vision sections */
+.mission, .vision {
+    flex: 1; /* Equal width */
+    /* Add space between sections */
+    text-align: center;
+    text-align-last: justify; /* Align the last line */
+    text-align: justify;
+    font-size: 15px;
+    font-weight: normal;
+    font-family: 'Lato', sans-serif;
+
+}
+.mission{
+    margin-right: 30px;
+}
+.mission h2, .vision h2 {
+    color: #000; /* Set color for headings */
+}
+
+.mission p, .vision p {
+    color: #000; /* Set color for paragraphs */
+}
+/* Center the slideshow wrapper */
+.slideshow-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set the wrapper height to full viewport height */
+}
+
+/* Center the slideshow container */
+.slideshow-container {
+    width: 840px; /* Set slideshow width */
+    height: 490px; /* Set slideshow height */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center the slides horizontally */
+    align-items: center;
+    margin: 40px auto 20px; /* Center horizontally, top margin 40px, bottom margin 20px */
+    border-radius: 10px; /* Add corner radius */
+    overflow: hidden;
+}
+
+/* Hide all slides by default */
+.mySlides {
+    display: none;
+}
