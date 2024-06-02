@@ -96,7 +96,6 @@ function log_error($message) {
             </thead>
             <tbody id="helpdeskTableBody">
                 <?php
-                 session_start();
 
                  // Check if the user is not logged in
                  if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
