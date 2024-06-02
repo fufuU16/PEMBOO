@@ -1,67 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Signup.css">
-    <title>Login</title>
-    <link rel="icon" type="image/png" href="picture/icon.png">
-</head>
-<body>
-<button type="button" id="adminLoginBtn" style="position: absolute; top: 10px; left: 10px; opacity: 0; width: 20%;"></button>
-
-<div class="top-image">
-    <img src="picture/Imagetop.png" alt="Header Image">
-</div>
-<div class="navbar">
-    <button type="button" id="adminLoginBtn" style="display: none;"></button>
-    <a href="index.php">Home</a>
-    <a href="BarangayUp.php">BARANGAY UPDATES</a>
-    <a href="Entertainment.php">ENTERTAINMENT</a>
-    <a href="Helpdesk.php">HELP DESK</a>
-    <a href="Login.php" class="login">LOGIN</a>
-</div>
-
-<div class="Login">
-    <div class="login-container">
-        <div class="half-left">
-            <div class="centered"></div>
-        </div>
-        <div class="half-right">
-            <div class="centered"></div>
-        </div>
-    </div>
-    <div class="overlay-container">
-        <div class="centered">
-            <h2>You don’t have an account?</h2>
-            <button class="signup-button" id="Signup-button" style="display: flex; justify-content: center;">Signup</button>
-        </div>
-        <div class="overlay-left"></div>
-        <div class="overlay-right">
-            <h2>Login</h2>
-            <form id="loginForm" method="post" action="">
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit" class="login-button">Login</button>
-                <a href="forgotpass.php" class="forgot-password">Forgot Password?</a>
-            </form>
-        </div>
-    </div>
-</div>
-
 <?php
 // Enable error reporting and set custom error handler
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-function handlePhpError($errno, $errstr, $errfile, $errline) {
-    echo "<script type='text/javascript'>
-            alert('Error: $errstr in $errfile on line $errline');
-          </script>";
-}
-
-set_error_handler('handlePhpError');
+// Start session at the beginning
+session_start();
 
 // Include database connection
 include 'db.php';
@@ -110,7 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $user = $result->fetch_assoc();
                 if (password_verify($password, $user['password'])) {
                     // Password is correct, login successful
-                    session_start();
                     $_SESSION['email'] = $email; // Store email in session
                     $_SESSION['user_id'] = $user['id']; // Assuming 'id' is the user ID column in the 'users' table
                     
@@ -165,6 +108,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Close the database connection
 $conn->close();
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Signup.css">
+    <title>Login</title>
+    <link rel="icon" type="image/png" href="picture/icon.png">
+</head>
+<body>
+<button type="button" id="adminLoginBtn" style="position: absolute; top: 10px; left: 10px; opacity: 0; width: 20%;"></button>
+
+<div class="top-image">
+    <img src="picture/Imagetop.png" alt="Header Image">
+</div>
+<div class="navbar">
+    <button type="button" id="adminLoginBtn" style="display: none;"></button>
+    <a href="index.php">Home</a>
+    <a href="BarangayUp.php">BARANGAY UPDATES</a>
+    <a href="Entertainment.php">ENTERTAINMENT</a>
+    <a href="Helpdesk.php">HELP DESK</a>
+    <a href="Login.php" class="login">LOGIN</a>
+</div>
+
+<div class="Login">
+    <div class="login-container">
+        <div class="half-left">
+            <div class="centered"></div>
+        </div>
+        <div class="half-right">
+            <div class="centered"></div>
+        </div>
+    </div>
+    <div class="overlay-container">
+        <div class="centered">
+            <h2>You don’t have an account?</h2>
+            <button class="signup-button" id="Signup-button" style="display: flex; justify-content: center;">Signup</button>
+        </div>
+        <div class="overlay-left"></div>
+        <div class="overlay-right">
+            <h2>Login</h2>
+            <form id="loginForm" method="post" action="">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="login-button">Login</button>
+                <a href="forgotpass.php" class="forgot-password">Forgot Password?</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <script>
     document.getElementById("adminLoginBtn").onclick = function() {
         window.location.href = "AdminLogin.php";
