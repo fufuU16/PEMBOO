@@ -52,8 +52,24 @@
         <a href="Entertainment.php">ENTERTAINMENT</a>
         <a href="Helpdesk.php">HELP DESK</a>
         <?php
-                session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
+function handlePhpError($errno, $errstr, $errfile, $errline) {
+    echo "<script type='text/javascript'>
+            alert('Error: $errstr in $errfile on line $errline');
+          </script>";
+}
+
+set_error_handler('handlePhpError');
+                session_start();
+$error_log_file = __DIR__ . '/error_log.txt';
+
+function log_error($message) {
+    global $error_log_file;
+    error_log($message . "\n", 3, $error_log_file);
+}
 if(isset($_SESSION['user_id'])) {
     // User is logged in, display dropdown with Logout and Change Password
     echo '
