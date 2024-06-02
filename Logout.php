@@ -26,6 +26,6 @@ $_SESSION = [];
 session_destroy();
 
 // Redirect to homepage or any other appropriate page
-header("Location: homepage.php");
+header("Location: index.php");
 exit();
 ?>
