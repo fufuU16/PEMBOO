@@ -1,7 +1,24 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Include database connection
 include 'db.php';
+function handlePhpError($errno, $errstr, $errfile, $errline) {
+    echo "<script type='text/javascript'>
+            alert('Error: $errstr in $errfile on line $errline');
+          </script>";
+}
 
+set_error_handler('handlePhpError');
+
+$error_log_file = __DIR__ . '/error_log.txt';
+
+function log_error($message) {
+    global $error_log_file;
+    error_log($message . "\n", 3, $error_log_file);
+}
 // Function to hash password
 function hashPassword($password) {
     return password_hash($password, PASSWORD_BCRYPT);
