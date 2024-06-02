@@ -1,54 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Signup.css">
-    <title>Admin Login</title>
-    <link rel="icon" type="image/png" href="picture\icon.png">
+ <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-</head>
-<body>
-    <div class="top-image">
-        <img src="picture/Imagetop.png" alt="Header Image">
-    </div>
-    <div class="Login">
-        <div class="login-container">
-            <div class="half-left">
-                <div class="centered">
-                    <!-- Add content if needed -->
-                </div>
-            </div>
-            <div class="half-right">
-                <div class="centered">
-                    <!-- Add content if needed -->
-                </div>
-            </div>
-        </div>
-
-        <div class="overlay-container">
-            <div class="centered">
-                <h2></h2>
-            </div>
-            <div class="overlay-left">
-                <!-- Add content if needed -->
-            </div>
-            <div class="overlay-right">
-                <h2>Admin Login</h2>
-                <form id="loginForm" method="post" action="AdminLogin.php">
-                    <input type="email" name="email" placeholder="Email" required>
-                    <input type="password" name="password" placeholder="Password" required>
-                    <button type="submit" class="login-button">Login</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <?php
     // Include database connection
     include 'db.php';
     session_start(); // Ensure session is started
+function handlePhpError($errno, $errstr, $errfile, $errline) {
+    echo "<script type='text/javascript'>
+            alert('Error: $errstr in $errfile on line $errline');
+          </script>";
+}
 
+set_error_handler('handlePhpError');
+
+$error_log_file = __DIR__ . '/error_log.txt';
+
+function log_error($message) {
+    global $error_log_file;
+    error_log($message . "\n", 3, $error_log_file);
+}
     // Define the password expiration period (e.g., 90 days)
     define('PASSWORD_EXPIRATION_DAYS', 90);
     $max_attempts = 3; // Maximum number of failed attempts
@@ -135,6 +106,54 @@
         $conn->close();
     }
     ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Signup.css">
+    <title>Admin Login</title>
+    <link rel="icon" type="image/png" href="picture\icon.png">
+
+</head>
+<body>
+    <div class="top-image">
+        <img src="picture/Imagetop.png" alt="Header Image">
+    </div>
+    <div class="Login">
+        <div class="login-container">
+            <div class="half-left">
+                <div class="centered">
+                    <!-- Add content if needed -->
+                </div>
+            </div>
+            <div class="half-right">
+                <div class="centered">
+                    <!-- Add content if needed -->
+                </div>
+            </div>
+        </div>
+
+        <div class="overlay-container">
+            <div class="centered">
+                <h2></h2>
+            </div>
+            <div class="overlay-left">
+                <!-- Add content if needed -->
+            </div>
+            <div class="overlay-right">
+                <h2>Admin Login</h2>
+                <form id="loginForm" method="post" action="AdminLogin.php">
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit" class="login-button">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+   
 
     <script src="Login.js"></script>
 </body>
