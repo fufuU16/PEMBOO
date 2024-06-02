@@ -6,9 +6,7 @@ error_reporting(E_ALL);
 
 session_start();
 
-if (!isset($_SESSION['email'])) {
-    header("Location: Signup.php");
-}
+
 function handlePhpError($errno, $errstr, $errfile, $errline) {
     echo "<script type='text/javascript'>
             alert('Error: $errstr in $errfile on line $errline');
