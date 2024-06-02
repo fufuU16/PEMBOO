@@ -1,25 +1,33 @@
     <?php
+// Start the session at the very beginning
+session_start();
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Include database connection
 include 'db.php';
+
+// Error handling function
 function handlePhpError($errno, $errstr, $errfile, $errline) {
     echo "<script type='text/javascript'>
             alert('Error: $errstr in $errfile on line $errline');
           </script>";
 }
 
+// Set error handler
 set_error_handler('handlePhpError');
 
+// Path to error log file
 $error_log_file = __DIR__ . '/error_log.txt';
 
+// Function to log errors
 function log_error($message) {
     global $error_log_file;
     error_log($message . "\n", 3, $error_log_file);
 }
-session_start();
+
 // Include PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
