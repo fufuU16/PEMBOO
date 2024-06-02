@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Signup.css">
     <title>Login</title>
-    <link rel="icon" type="image/png" href="picture\icon.png">
-
+    <link rel="icon" type="image/png" href="picture/icon.png">
 </head>
 <body>
 <button type="button" id="adminLoginBtn" style="position: absolute; top: 10px; left: 10px; opacity: 0; width: 20%;"></button>
@@ -51,6 +50,19 @@
 </div>
 
 <?php
+// Enable error reporting and set custom error handler
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+function handlePhpError($errno, $errstr, $errfile, $errline) {
+    echo "<script type='text/javascript'>
+            alert('Error: $errstr in $errfile on line $errline');
+          </script>";
+}
+
+set_error_handler('handlePhpError');
+
 // Include database connection
 include 'db.php';
 
