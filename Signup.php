@@ -1,69 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Login.css">
-    <link rel="icon" type="image/png" href="picture\icon.png">
-
-    <title>Sign Up</title>
-   
-</head>
-<body>
-    <div class="top-image">
-        <img src="picture/Imagetop.png" alt="Header Image">
-    </div>
-    <div class="navbar">
-        <a href="index.php" >Home</a>
-        <a href="BarangayUp.php">BARANGAY UPDATES</a>
-        <a href="Entertainment.php">ENTERTAINMENT</a>
-        <a href="Helpdesk.php">HELP DESK</a>
-        <a href="Login.php"class="login" >LOGIN</a>
-    </div>
-   
-    <div class="Login">
-        <div class="login-container">
-            <div class="half-left">
-                <div class="centered">
-
-                </div>
-            </div>
-            <div class="half-right">
-                <div class="centered">
-                </div>
-            </div>
-        </div>
-        <div class="overlay-container">
-        <form class="signup-form" action="signup.php" method="POST">
-    <div class="overlay-left">
-        <h2>Signup</h2>
-        <input type="text" id="name" name="name" placeholder="Name">
-        <input type="text" id="surname" name="surname" placeholder="Surname">
-        <input type="text" id="address" name="address" placeholder="Address">
-        <input type="text" id="age" name="age" placeholder="Age">
-        <input type="text" id="gender" name="gender" placeholder="Gender">
-        <input type="email" id="email" name="email" placeholder="Email">
-        <input type="password" id="password" name="password" placeholder="Password">
-       
-        
-                <button type="submit" class="signup-button">Signup</button>
-    </div>
-</form>
-
-            
-            <div class="overlay-right">
-          
-            </div>
-            <div class="centered">
-                 <h2>Do you already have an account?</h2>
-            <button id="loginButton" class="login-button">Login</button></div>
-        </div>
-    </div>
-
-
-   
-
-    <script src="Signup.js"></script>
     <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -212,6 +146,73 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Close the database connection
 $conn->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Login.css">
+    <link rel="icon" type="image/png" href="picture\icon.png">
+
+    <title>Sign Up</title>
+   
+</head>
+<body>
+    <div class="top-image">
+        <img src="picture/Imagetop.png" alt="Header Image">
+    </div>
+    <div class="navbar">
+        <a href="index.php" >Home</a>
+        <a href="BarangayUp.php">BARANGAY UPDATES</a>
+        <a href="Entertainment.php">ENTERTAINMENT</a>
+        <a href="Helpdesk.php">HELP DESK</a>
+        <a href="Login.php"class="login" >LOGIN</a>
+    </div>
+   
+    <div class="Login">
+        <div class="login-container">
+            <div class="half-left">
+                <div class="centered">
+
+                </div>
+            </div>
+            <div class="half-right">
+                <div class="centered">
+                </div>
+            </div>
+        </div>
+        <div class="overlay-container">
+        <form class="signup-form" action="signup.php" method="POST">
+    <div class="overlay-left">
+        <h2>Signup</h2>
+        <input type="text" id="name" name="name" placeholder="Name">
+        <input type="text" id="surname" name="surname" placeholder="Surname">
+        <input type="text" id="address" name="address" placeholder="Address">
+        <input type="text" id="age" name="age" placeholder="Age">
+        <input type="text" id="gender" name="gender" placeholder="Gender">
+        <input type="email" id="email" name="email" placeholder="Email">
+        <input type="password" id="password" name="password" placeholder="Password">
+       
+        
+                <button type="submit" class="signup-button">Signup</button>
+    </div>
+</form>
+
+            
+            <div class="overlay-right">
+          
+            </div>
+            <div class="centered">
+                 <h2>Do you already have an account?</h2>
+            <button id="loginButton" class="login-button">Login</button></div>
+        </div>
+    </div>
+
+
+   
+
+    <script src="Signup.js"></script>
 
 
 <script src="Signup.js"></script>
