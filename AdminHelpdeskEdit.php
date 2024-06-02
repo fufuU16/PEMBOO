@@ -4,10 +4,12 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
+
 function handlePhpError($errno, $errstr, $errfile, $errline) {
-    echo "<script type='text/javascript'>
-            alert('Error: $errstr in $errfile on line $errline');
-          </script>";
+    global $error_log_file;
+    $message = "Error: $errstr in $errfile on line $errline";
+    error_log($message . "\n", 3, $error_log_file);
+    echo "<script type='text/javascript'>alert('$message');</script>";
 }
 
 set_error_handler('handlePhpError');
@@ -18,12 +20,20 @@ function log_error($message) {
     global $error_log_file;
     error_log($message . "\n", 3, $error_log_file);
 }
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+// Ensure the PHPMailer files exist
+if (!file_exists(__DIR__ . '/PHPMailer/src/Exception.php') ||
+    !file_exists(__DIR__ . '/PHPMailer/src/PHPMailer.php') ||
+    !file_exists(__DIR__ . '/PHPMailer/src/SMTP.php')) {
+    die('PHPMailer files not found');
+}
+
+require __DIR__ . '/PHPMailer/src/Exception.php';
+require __DIR__ . '/PHPMailer/src/PHPMailer.php';
+require __DIR__ . '/PHPMailer/src/SMTP.php';
 
 $servername = "pembodatabase.mysql.database.azure.com";
 $username = "pemboweb";
@@ -132,7 +142,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             // Create a notification for the user
             $notification_message = "Your inquiry with ticket number $ticket_number has been updated.<br> Admin reply: $admin_reply<br>You can also check your email to reply to the admin.";
 
-         
             $notification_stmt = $connection->prepare("INSERT INTO notifications (user_id, email, message, ticket_number) VALUES (?, ?, ?, ?)");
             $notification_stmt->bind_param("isss", $user['id'], $email, $notification_message, $ticket_number);
             $notification_stmt->execute();
@@ -180,6 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
 
         header("location: AdminHelpDesk.php");
+        exit;
     } else {
         $errorMessage = "Error updating record: " . $connection->error;
     }
