@@ -4,7 +4,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-
+  if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
+                     // Redirect the user to the login page or show an error message
+                     header("Location: AdminLogin.php"); // Change "login.php" to your login page
+                     exit();
+                 }
 function handlePhpError($errno, $errstr, $errfile, $errline) {
     echo "<script type='text/javascript'>
             alert('Error: $errstr in $errfile on line $errline');
@@ -98,11 +102,7 @@ function log_error($message) {
                 <?php
 
                  // Check if the user is not logged in
-                 if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
-                     // Redirect the user to the login page or show an error message
-                     header("Location: AdminLogin.php"); // Change "login.php" to your login page
-                     exit();
-                 }
+               
                 
                  $servername = "pembodatabase.mysql.database.azure.com";
                  $username = "pemboweb";
