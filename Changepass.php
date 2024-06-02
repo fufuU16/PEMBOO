@@ -1,25 +1,9 @@
 <?php
 session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 
 include 'db.php';
 
-function handlePhpError($errno, $errstr, $errfile, $errline) {
-    echo "<script type='text/javascript'>
-            alert('Error: $errstr in $errfile on line $errline');
-          </script>";
-}
-
-set_error_handler('handlePhpError');
-
-$error_log_file = __DIR__ . '/error_log.txt';
-
-function log_error($message) {
-    global $error_log_file;
-    error_log($message . "\n", 3, $error_log_file);
-}
 
 if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
     echo '<script>alert("Session expired. Please log in again."); window.location.href="login.php";</script>';
@@ -73,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $history_insert_stmt->execute();
                     $history_insert_stmt->close();
 
-                    echo "<script>alert('Password updated successfully.'); window.location.href='login.php';</script>";
+                    echo "<script>alert('Password updated successfully.'); window.location.href='index.php';</script>";
                 } else {
                     echo "<script>alert('Error updating password: " . $update_stmt->error . "');</script>";
                 }
