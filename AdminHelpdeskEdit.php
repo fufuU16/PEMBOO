@@ -56,7 +56,7 @@ $errorMessage = "";
 $successMessage = "";
 
 // Define the base URL for valid ID images
-$valid_id_base_url = '/PEMBO/ValidID/';
+$valid_id_base_url = 'ValidID/';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (!isset($_GET["id"])) {
