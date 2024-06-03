@@ -59,7 +59,7 @@ $status = "";
 $priority = "";
 $created_at = "";
 $admin_reply = "";
-$valid_id_filename = "";
+$valid_id = "";
 $ticket_number = "";
 
 $errorMessage = "";
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $priority = $row["priority"];
     $created_at = $row["created_at"];
     $admin_reply = $row["admin_reply"];
-    $valid_id_filename = $row["valid_id"]; // Get the valid ID filename
+    $valid_id = $row["valid_id"]; // Get the valid ID filename
     $ticket_number = $row["ticket_number"];
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST["id"];
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $priority = $_POST["priority"];
     $created_at = $_POST["created_at"];
     $admin_reply = $_POST["admin_reply"];
-    $valid_id_filename = $_POST["valid_id"]; // Include valid ID in POST data
+    $valid_id = $_POST["valid_id"]; // Include valid ID in POST data
     $ticket_number = $_POST["ticket_number"];
 
     $sql = "UPDATE help_desk_forms SET
@@ -296,8 +296,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Valid ID</label>
                     <div class="col-sm-6">
-                        <?php if (!empty($valid_id_filename)): ?>
-                            <img src="<?php echo $valid_id_base_url . $valid_id_filename; ?>" alt="Valid ID" class="img-fluid" />
+                        <?php if (!empty($valid_id)): ?>
+                            <img src="<?php echo $valid_id_base_url . $valid_id; ?>" alt="Valid ID" class="img-fluid" />
                         <?php else: ?>
                             <p>No valid ID available.</p>
                         <?php endif; ?>
