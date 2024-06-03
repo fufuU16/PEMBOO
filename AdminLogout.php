@@ -5,7 +5,6 @@ $username = "pemboweb";
 $password = 'Pa$$wordDINS';
 $dbname = "pembodb";
 
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -20,6 +19,7 @@ error_reporting(E_ALL);
 
 // Start session
 session_start();
+
 function handlePhpError($errno, $errstr, $errfile, $errline) {
     echo "<script type='text/javascript'>
             alert('Error: $errstr in $errfile on line $errline');
@@ -36,7 +36,7 @@ function log_error($message) {
 }
 
 // Check if the user is logged in
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
     // Retrieve admin ID and email from session
     $admin_id = $_SESSION['id'];
     $email = $_SESSION['email'];
@@ -59,6 +59,9 @@ if (isset($_SESSION['id'])) {
         log_error("Error preparing statement: " . $conn->error);
         echo "Error preparing statement: " . $conn->error;
     }
+} else {
+    log_error("Session variables 'id' or 'email' are not set.");
+    echo "Session variables 'id' or 'email' are not set.";
 }
 
 // Unset all session variables
@@ -71,5 +74,6 @@ session_destroy();
 $conn->close();
 
 // Redirect to homepage or any other appropriate page
+header("Location: AdminLogin.php");
 exit();
 ?>
