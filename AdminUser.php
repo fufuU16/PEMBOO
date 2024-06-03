@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
- session_start();
+session_start();
 function handlePhpError($errno, $errstr, $errfile, $errline) {
     echo "<script type='text/javascript'>
             alert('Error: $errstr in $errfile on line $errline');
@@ -18,12 +18,13 @@ function log_error($message) {
     global $error_log_file;
     error_log($message . "\n", 3, $error_log_file);
 }
-                // Check if the user is not logged in
-                if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
-                    // Redirect the user to the login page or show an error message
-                    header("Location: AdminLogin.php"); // Change "login.php" to your login page
-                    exit();
-                }
+
+// Check if the user is not logged in
+if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
+    // Redirect the user to the login page or show an error message
+    header("Location: AdminLogin.php"); // Change "login.php" to your login page
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,8 +34,7 @@ function log_error($message) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List of Users</title>
-    <link rel="icon" type="image/png" href="picture\icon.png">
-
+    <link rel="icon" type="image/png" href="picture/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <style>
         /* CSS for search bar */
@@ -88,15 +88,13 @@ function log_error($message) {
             </thead>
             <tbody id="userTableBody">
                 <?php
-               
-                
                 $servername = "pembodatabase.mysql.database.azure.com";
                 $username = "pemboweb";
                 $password = 'Pa$$wordDINS';
                 $dbname = "pembodb";
 
                 // Create connection
-                $connection = new mysqli($servername, $username, $password, $database);
+                $connection = new mysqli($servername, $username, $password, $dbname);
 
                 // Check connection
                 if ($connection->connect_error) {
