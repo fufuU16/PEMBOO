@@ -157,7 +157,7 @@ function log_error($message) {
                         <td>{$row['ticket_number']}</td>
                         <td class='truncate'>{$row['admin_reply']}</td>
                         <td>
-                            <a class='btn btn-primary btn-sm' href='/PEMBO/AdminHelpdeskEdit.php?id={$row['id']}'>Reply</a>
+                            <a class='btn btn-primary btn-sm' href='AdminHelpdeskEdit.php?id={$row['id']}'>Reply</a>
                         </td>
                     </tr>
                     ";
