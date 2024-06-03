@@ -5,6 +5,7 @@ $username = "pemboweb";
 $password = 'Pa$$wordDINS';
 $dbname = "pembodb";
 
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -70,6 +71,5 @@ session_destroy();
 $conn->close();
 
 // Redirect to homepage or any other appropriate page
-header("Location: AdminLogin.php");
 exit();
 ?>
