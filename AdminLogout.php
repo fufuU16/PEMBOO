@@ -6,9 +6,9 @@ include 'db.php';
 session_start();
 
 // Check if the user is logged in
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['email'])) {
     // Retrieve user ID and email from session
-    $admin_id = $_SESSION['id'];
+    $admin_id = $_SESSION['admin_id'];
     $email = $_SESSION['email'];
 
     // Insert log entry for logout
