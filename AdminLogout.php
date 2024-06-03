@@ -13,7 +13,7 @@ if (isset($_SESSION['email'])) {
 
     // Insert log entry for logout
     $log_description = "Admin logged out with email: $email";
-    $insert_log_stmt = $conn->prepare("INSERT INTO AdminLogs (admin_id, log_type, log_description) VALUES (?, 'Admin Logout', ?)");
+    $insert_log_stmt = $conn->prepare("INSERT INTO adminLogs (admin_id, log_type, log_description) VALUES (?, 'Admin Logout', ?)");
     $insert_log_stmt->bind_param("is", $user_id, $log_description);
     $insert_log_stmt->execute();
     $insert_log_stmt->close();
