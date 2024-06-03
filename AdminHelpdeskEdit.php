@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $priority = $row["priority"];
     $created_at = $row["created_at"];
     $admin_reply = $row["admin_reply"];
-    $valid_id = $row["valid_id"]; // Get the valid ID filename
+    $valid_id = isset($row["valid_id"]) ? $row["valid_id"] : ""; // Check if the key exists
     $ticket_number = $row["ticket_number"];
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST["id"];
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $priority = $_POST["priority"];
     $created_at = $_POST["created_at"];
     $admin_reply = $_POST["admin_reply"];
-    $valid_id = $_POST["valid_id"]; // Include valid ID in POST data
+    $valid_id = isset($_POST["valid_id"]) ? $_POST["valid_id"] : ""; // Include valid ID in POST data if exists
     $ticket_number = $_POST["ticket_number"];
 
     $sql = "UPDATE help_desk_forms SET
@@ -196,6 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
