@@ -1,6 +1,18 @@
 <?php
-// Include database connection
-include 'db.php';
+// Database connection parameters
+$servername = "pembodatabase.mysql.database.azure.com";
+$username = "pemboweb";
+$password = 'Pa$$wordDINS';
+$dbname = "pembodb";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -21,6 +33,7 @@ function log_error($message) {
     global $error_log_file;
     error_log($message . "\n", 3, $error_log_file);
 }
+
 // Check if the user is logged in
 if (isset($_SESSION['id'])) {
     // Retrieve admin ID and email from session
@@ -31,9 +44,20 @@ if (isset($_SESSION['id'])) {
     $log_type = "Admin Logout"; // Specify log type
     $log_description = "Admin logged out with email: $email";
     $insert_log_stmt = $conn->prepare("INSERT INTO AdminLogs (admin_id, log_type, log_description) VALUES (?, ?, ?)");
-    $insert_log_stmt->bind_param("iss", $admin_id, $log_type, $log_description); // Assuming admin_id is an integer
-    $insert_log_stmt->execute();
-    $insert_log_stmt->close();
+
+    if ($insert_log_stmt) {
+        $insert_log_stmt->bind_param("iss", $admin_id, $log_type, $log_description); // Assuming admin_id is an integer
+        if ($insert_log_stmt->execute()) {
+            echo "Log entry inserted successfully.";
+        } else {
+            log_error("Error executing statement: " . $insert_log_stmt->error);
+            echo "Error executing statement: " . $insert_log_stmt->error;
+        }
+        $insert_log_stmt->close();
+    } else {
+        log_error("Error preparing statement: " . $conn->error);
+        echo "Error preparing statement: " . $conn->error;
+    }
 }
 
 // Unset all session variables
@@ -41,6 +65,9 @@ $_SESSION = [];
 
 // Destroy the session
 session_destroy();
+
+// Close the database connection
+$conn->close();
 
 // Redirect to homepage or any other appropriate page
 header("Location: AdminLogin.php");
