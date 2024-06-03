@@ -1,4 +1,7 @@
 <?php
+// Start output buffering
+ob_start();
+
 // Database connection parameters
 $servername = "pembodatabase.mysql.database.azure.com";
 $username = "pemboweb";
@@ -76,4 +79,7 @@ $conn->close();
 // Redirect to homepage or any other appropriate page
 header("Location: AdminLogin.php");
 exit();
+
+// Flush the output buffer
+ob_end_flush();
 ?>
