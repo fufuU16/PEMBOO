@@ -195,7 +195,7 @@ function uploadToGitHub($filePath, $fileName, $repo, $path, $branch, $token) {
             $repo = 'fufuU16/PEMBO';
             $path = 'ValidID';
             $branch = 'main';
-            $token = 'YOUR_GITHUB_TOKEN_HERE'; // Replace with your GitHub token
+            $token = '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'; // Replace with your GitHub token
 
             if (!uploadToGitHub($valid_id_path, $valid_id_filename, $repo, $path, $branch, $token)) {
                 echo '<script>alert("Failed to upload the file to GitHub.");</script>';
