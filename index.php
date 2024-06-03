@@ -68,7 +68,7 @@ function log_error($message) {
     <img src="picture/Imagetop.png" alt="Header Image">
 </div>
 <div class="navbar">
-    <a href="Homepage.php" class="home">Home</a>
+    <a href="index.php" class="home">Home</a>
     <a href="BarangayUp.php">BARANGAY UPDATES</a>
     <a href="Entertainment.php">ENTERTAINMENT</a>
     <a href="Helpdesk.php">HELP DESK</a>
