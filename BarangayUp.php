@@ -1,10 +1,11 @@
-<?php  
+
+<?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-session_start();
-include 'db.php';
+
+      session_start();
 function handlePhpError($errno, $errstr, $errfile, $errline) {
     echo "<script type='text/javascript'>
             alert('Error: $errstr in $errfile on line $errline');
@@ -19,8 +20,8 @@ function log_error($message) {
     global $error_log_file;
     error_log($message . "\n", 3, $error_log_file);
 }
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,7 +76,8 @@ function log_error($message) {
         <a href="Entertainment.php">ENTERTAINMENT</a>
         <a href="Helpdesk.php">HELP DESK</a>
         <?php
-=
+          
+
 if(isset($_SESSION['user_id'])) {
     // User is logged in, display dropdown with Logout and Change Password
     echo '
